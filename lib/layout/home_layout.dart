@@ -15,14 +15,27 @@ class Home_Layout extends StatelessWidget {
           var cubit = AppCubit.get(context);
           return Scaffold(
             appBar: AppBar(
-              title: Text("Profile page"),
-              centerTitle: true,
+              title: const Text("Profile page"),
               backgroundColor: Colors.deepOrange,
               actions: [
-                IconButton(
-                  onPressed: () {Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => Edit()));},
-                  icon: const Icon(Icons.edit),
+                Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(Icons.explore),
+                    ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(Icons.trending_up),
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Edit()));
+                      },
+                      icon: const Icon(Icons.edit),
+                    ),
+                  ],
                 )
               ],
             ),
@@ -31,52 +44,22 @@ class Home_Layout extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Expanded(
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                  const Center(
+                    child: Column(
                       children: [
-                        const Column(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.all(15.0),
-                              child: CircleAvatar(
-                                radius: 60,
-                                backgroundImage: NetworkImage(
-                                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtEbTLfMii3TQW5ambR0PD6FlRMPcUFzDy_g&usqp=CAU.jpg'),
-                              ),
-                            ),
-                            Text(
-                              "User Name",
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Container(
-                          height: 100,
-                          decoration: BoxDecoration(
-                            borderRadius: const BorderRadius.horizontal(
-                              left: Radius.circular(10),
-                            ),
-                            color: Colors.grey[100],
+                        Padding(
+                          padding: EdgeInsets.all(15.0),
+                          child: CircleAvatar(
+                            radius: 60,
+                            backgroundImage: NetworkImage(
+                                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtEbTLfMii3TQW5ambR0PD6FlRMPcUFzDy_g&usqp=CAU.jpg'),
                           ),
-                          child: Column(
-                            children: [
-                              IconButton(
-                                onPressed: () {},
-                                icon: const Icon(Icons.explore),
-                                color: Colors.deepOrange,
-                                iconSize: 30,
-                              ),
-                              IconButton(
-                                onPressed: () {},
-                                icon: const Icon(Icons.trending_up_outlined),
-                                color: Colors.deepOrange,
-                                iconSize: 30,
-                              ),
-                            ],
+                        ),
+                        Text(
+                          "User Name",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ],

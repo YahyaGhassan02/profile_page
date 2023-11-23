@@ -51,7 +51,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
             // Pop until you reach the HomeLayout page
-            Navigator.popUntil(context, ModalRoute.withName('/home'));
+            Navigator.pop(context);
           },
         ),
         backgroundColor: Colors.deepOrange,

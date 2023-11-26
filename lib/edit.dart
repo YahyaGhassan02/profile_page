@@ -1,48 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:profile_page/layout/home_layout.dart';
 
 class User {
-  String name;
-  String email;
-  String bio;
+  String name="User Name";
+  String email="User Email";
+  String bio="User Bio";
 
   User({required this.name, required this.email, required this.bio});
 }
 
 class Edit extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: EditProfilePage(
-          user: User(
-              name: "User Name",
-              email: "User@example.com",
-              bio: "Your bio")),
-    );
-  }
-}
-
-class EditProfilePage extends StatefulWidget {
-  final User user;
-
-  EditProfilePage({required this.user});
-
-  @override
-  _EditProfilePageState createState() => _EditProfilePageState();
-}
-
-class _EditProfilePageState extends State<EditProfilePage> {
-  late TextEditingController nameController;
-  late TextEditingController emailController;
-  late TextEditingController bioController;
-
-  @override
-  void initState() {
-    super.initState();
-    nameController = TextEditingController(text: widget.user.name);
-    emailController = TextEditingController(text: widget.user.email);
-    bioController = TextEditingController(text: widget.user.bio);
-  }
-
+  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController bioController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,76 +32,97 @@ class _EditProfilePageState extends State<EditProfilePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const CircleAvatar(
-              radius: 60,
-              backgroundImage: NetworkImage(
-                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtEbTLfMii3TQW5ambR0PD6FlRMPcUFzDy_g&usqp=CAU.jpg'),
-            ),
-            const SizedBox(height: 16),
-            TextField(
-              controller: nameController,
-              decoration: const InputDecoration(labelText: 'Name'),
-            ),
-            const SizedBox(height: 8),
-            TextField(
-              controller: emailController,
-              decoration: const InputDecoration(labelText: 'Email'),
-            ),
-            const SizedBox(height: 8),
-            TextField(
-              controller: bioController,
-              decoration: const InputDecoration(labelText: 'Bio'),
-            ),
-            const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ElevatedButton(
-
-                  onPressed: () {
-                    // Save the edited information
-                    User updatedUser = User(
-                      name: nameController.text,
-                      email: emailController.text,
-                      bio: bioController.text,
-                    );
-
-                    // Update the user information
-                    // You can save it to a database or perform any other necessary actions
-                    // For now, we'll just print the updated information
-                    print('Updated User Information: $updatedUser');
-
-                    // You might want to navigate back to the previous screen or perform other actions here
-                  },
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.deepOrange,
+            Center(
+              child: Column(
+                children: [
+                  CircleAvatar(
+                    radius: 60,
+                    backgroundImage: const NetworkImage(
+                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtEbTLfMii3TQW5ambR0PD6FlRMPcUFzDy_g&usqp=CAU.jpg'),
+                    child: Stack(
+                      children: [
+                        // Edit Button
+                        Positioned(
+                          bottom: -10,
+                          right: -10,
+                          child: IconButton(
+                            icon: Icon(
+                              Icons.add_a_photo,
+                              color: Colors.grey[700],
+                            ),
+                            onPressed: () {},
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                  child: const Text('Save'),
-                ),
-                TextButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.deepOrange,
-                    foregroundColor: Colors.white,
+                ],
+              ),
+            ),
+            const SizedBox(height: 20),
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: TextField(
+                      maxLines: 1,
+                      controller: nameController,
+                      decoration: const InputDecoration(hintText: 'Name'),
+                    ),
                   ),
-                  onPressed: () {
-                    // Simply navigate back without saving changes
-                    Navigator.pop(context);
-                  },
-                  child: const Text('Discard'),
-                ),
-              ],
+                  const SizedBox(height: 20),
+                  Expanded(
+                    child: TextField(
+                      maxLines: 1,
+                      controller: emailController,
+                      decoration: const InputDecoration(hintText: 'Email'),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  Expanded(
+                    child: TextField(
+                      maxLines: 1,
+                      controller: bioController,
+                      decoration: const InputDecoration(hintText: 'Bio'),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 20),
+            Expanded(
+              child: Column(
+                children: [
+                  Container(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        // Save the edited information
+                        User updatedUser = User(
+                          name: nameController.text,
+                          email: emailController.text,
+                          bio: bioController.text,
+                        );
+
+                        // Update the user information
+                        // You can save it to a database or perform any other necessary actions
+                        // For now, we'll just print the updated information
+
+                        // You might want to navigate back to the previous screen or perform other actions here
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.deepOrange,
+                      ),
+                      child: const Text('Save'),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    nameController.dispose();
-    emailController.dispose();
-    bioController.dispose();
-    super.dispose();
   }
 }

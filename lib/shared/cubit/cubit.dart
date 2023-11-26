@@ -18,12 +18,12 @@ class AppCubit extends Cubit<AppStates> {
 
   Widget ChangeBottomBody() {
     if (currentIndex == 0) {
-      return const Column(
-        children: [
-          Text("Inforamtion"),
-        ],
-      );
-    } else if (currentIndex == 1) {
+    //   return const Column(
+    //     children: [
+    //       Text("Inforamtion"),
+    //     ],
+    //   );
+    // } else if (currentIndex == 1) {
       return ListView.separated(
           itemBuilder: (context, index) => SquareFeed(),
           separatorBuilder: (context, index) => Padding(

@@ -6,6 +6,8 @@ import 'package:profile_page/shared/cubit/cubit.dart';
 import 'package:profile_page/shared/cubit/states.dart';
 
 class Home_Layout extends StatelessWidget {
+  User user= User(name: "User name", email: "user@mail.com", bio: "Back-end Developer");
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -44,10 +46,10 @@ class Home_Layout extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Center(
+                  Center(
                     child: Column(
                       children: [
-                        Padding(
+                        const Padding(
                           padding: EdgeInsets.all(15.0),
                           child: CircleAvatar(
                             radius: 60,
@@ -56,12 +58,26 @@ class Home_Layout extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          "User Name",
-                          style: TextStyle(
+                          user.name,
+                          style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
+                        Text(
+                          user.email,
+                          style: const TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.normal,
+                            color: Colors.grey,
+                          ),
+                        ),
+                        Text(
+                          user.bio,
+                          style: const TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.normal,
+                          ),)
                       ],
                     ),
                   ),
@@ -79,10 +95,10 @@ class Home_Layout extends StatelessWidget {
                 cubit.ChangeBottomNavBar(index);
               },
               items: const [
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.person),
-                  label: "Info",
-                ),
+                // BottomNavigationBarItem(
+                //   icon: Icon(Icons.person),
+                //   label: "Info",
+                // ),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.feedback),
                   label: "Feedback",

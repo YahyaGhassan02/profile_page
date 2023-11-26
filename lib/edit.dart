@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:profile_page/layout/home_layout.dart';
 
 class User {
-  String name="User Name";
-  String email="User Email";
-  String bio="User Bio";
+  String name = "User Name";
+  String email = "User Email";
+  String bio = "User Bio";
 
   User({required this.name, required this.email, required this.bio});
 }
 
 class Edit extends StatelessWidget {
+  final FocusNode _focusNode = FocusNode();
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController bioController = TextEditingController();

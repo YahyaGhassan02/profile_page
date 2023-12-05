@@ -6,7 +6,8 @@ import 'package:profile_page/shared/cubit/cubit.dart';
 import 'package:profile_page/shared/cubit/states.dart';
 
 class Home_Layout extends StatelessWidget {
-  User user= User(name: "User name", email: "user@mail.com", bio: "Back-end Developer");
+  User user = User(
+      name: "User name", email: "user@mail.com", bio: "Back-end Developer");
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +78,8 @@ class Home_Layout extends StatelessWidget {
                           style: const TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.normal,
-                          ),)
+                          ),
+                        )
                       ],
                     ),
                   ),
